@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from atmosphere_net import AtmosphereNet
 import json
+from training_data_gen import atmosphere  
 
-# Data generation function (replace this with your actual atmosphere function)
 def read_training_data(file_path):
     with open(file_path, 'r') as f:
         data = json.load(f)
@@ -167,16 +167,15 @@ def test_model():
     
     print("Sample predictions:")
     for i, (input_data, color) in enumerate(zip(test_inputs, predictions)):
-        print(f"Input {i+1}: ray={input_data[:3]}, sun={input_data[3:]}")
+        print(f"Input {i+1}: ray={input_data[:3]}")
         print(f"  Predicted RGB: ({color[0]:.3f}, {color[1]:.3f}, {color[2]:.3f})")
-        print()
+        truecolor = atmosphere(input_data)
+        print(f"  True RGB: ({truecolor[0]:.3f}, {truecolor[1]:.3f}, {truecolor[2]:.3f})")
 
 # Example usage
 if __name__ == "__main__":
     # Train the model
     model, train_losses, val_losses = train_model()
-
-    
     # Test the trained model
     test_model()
     

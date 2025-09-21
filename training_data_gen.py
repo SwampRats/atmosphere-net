@@ -34,7 +34,7 @@ def rsi(r0, rd, sr):
         (-b + sqrt_d) / (2.0 * a)
     ])
 
-def atmosphere(r, r0, pSun, iSun, rPlanet, rAtmos, kRlh, kMie, shRlh, shMie, g):
+def atmosphere(r, r0=np.array([0.0, 6372e3, 0.0]), pSun=np.array([1.0, 0.5, -1]), iSun=22.0, rPlanet=6371e3, rAtmos=6471e3, kRlh=np.array([5.5e-6, 13.0e-6, 22.4e-6]), kMie=21e-6, shRlh=8e3, shMie=1.2e3, g=0.758):
     """
     Calculate atmospheric scattering color.
     
